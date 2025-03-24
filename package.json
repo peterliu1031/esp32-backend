@@ -1,18 +1,19 @@
 {
-  "dependencies": {
-    "express": "^4.21.2",
-    "sqlite3": "^5.1.7"
-  },
-  "name": "js",
+  "name": "esp32-backend",
   "version": "1.0.0",
+  "description": "Backend for ESP32 sensor data",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {},
-  "description": ""
+  "dependencies": {
+    "express": "^4.21.2",
+    "sqlite3": "^5.1.7",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {}
 }
