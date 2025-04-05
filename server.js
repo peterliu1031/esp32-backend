@@ -26,11 +26,15 @@ app.get('/data', (req, res) => {
 app.post('/data', (req, res) => {
   const { temp, hum } = req.query;
   if (temp && hum) {
-    const temperature = parseFloat(temp);
-    const humidity = parseFloat(hum);
-    if (isNaN(temperature) || isNaN(humidity)) {
+    const temperatureFloat = parseFloat(temp);
+    const humidityFloat = parseFloat(hum);
+    if (isNaN(temperatureFloat) || isNaN(humidityFloat)) {
       return res.status(400).json({ status: 'error', message: 'temp 或 hum 必須是有效的數字' });
     }
+    // 四捨五入為整數
+    const temperature = Math.round(temperatureFloat);
+    const humidity = Math.round(humidityFloat);
+
     const newData = { temperature, humidity, timestamp: new Date().toISOString() };
     db.run('INSERT INTO sensor_data (temperature, humidity, timestamp) VALUES (?, ?, ?)', 
       [newData.temperature, newData.humidity, newData.timestamp], (err) => {
